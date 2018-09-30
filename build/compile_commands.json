@@ -1,0 +1,7 @@
+[
+{
+  "directory": "c:/Users/Amund/source/repos/amund-engine/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -TP  -I..\\amund\\include -I..\\amund\\src  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1   /Foamund\\CMakeFiles\\amund.dir\\src\\main.cpp.obj /FdTARGET_COMPILE_PDB -c C:\\Users\\Amund\\source\\repos\\amund-engine\\amund\\src\\main.cpp",
+  "file": "C:/Users/Amund/source/repos/amund-engine/amund/src/main.cpp"
+}
+]
