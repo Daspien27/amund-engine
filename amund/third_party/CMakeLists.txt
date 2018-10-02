@@ -14,5 +14,7 @@ option(RP3D_LOGS_ENABLED OFF)
 option(RP3D_DOUBLE_PRECISION_ENABLED OFF)
 add_subdirectory("reactphysics3d")
 
-option(BUILD_TESTING "Enable creation of Eigen tests." OFF)
-add_subdirectory("Eigen")
+
+option(GLM_TEST_ENABLE_CXX_17 "Enable C++ 17" ON)
+option(GLM_TEST_ENABLE "Build unit tests" OFF)
+add_subdirectory("glm")

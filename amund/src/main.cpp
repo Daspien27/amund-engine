@@ -5,6 +5,10 @@
 
 #include <reactphysics3d.h>
 
+#include <glm/glm.hpp>
+
+#include "amund/shader.h"
+
 int main(int, char**) {
 
     glfwInit ();
@@ -29,18 +33,44 @@ int main(int, char**) {
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
-    }    
-
-    
-
+    }
 
     std::cout << "Properly initialized gl bindings." << std::endl;
+
+    auto vs_loc = std::filesystem::current_path() / "build" / "assets" / "shaders" / "shader_vert.spv";
+    auto fs_loc = std::filesystem::current_path() / "build" / "assets" / "shaders" / "shader_frag.spv";
+
+    auto gp = amund::graphics::GraphicsShaderProgram (vs_loc, fs_loc);
+
+    gp.use ();
+
+    glViewport (0, 0, 800, 800);
+
+    std::vector<float> triangle = {-0.5f, -0.5f, 0.0f,
+                                    0.5f, -0.5f, 0.0f,
+                                    0.0f,  0.5f, 0.0f};
+
+    unsigned int vao = 0;
+    glGenVertexArrays(1, &vao);
+
+    unsigned int vbo = 0;
+    glGenBuffers(1, &vbo);
+
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    
+    glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, triangle.size()/3 * sizeof(float), reinterpret_cast<void*>(0));
+    glEnableVertexAttribArray(0);
+
+    glBufferData(GL_ARRAY_BUFFER, triangle.size() * sizeof(float), triangle.data(), GL_STATIC_DRAW);
 
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents ();
 
+        glClear(GL_COLOR_BUFFER_BIT);
 
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glfwSwapBuffers (window);
     }

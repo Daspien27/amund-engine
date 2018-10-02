@@ -37,4 +37,7 @@ target_link_libraries(amund
     PRIVATE glfw
     PRIVATE glad
     PRIVATE reactphysics3d
+    PRIVATE glm
     ) 
+
+file(COPY "assets" DESTINATION "${CMAKE_BINARY_DIR}")

@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Shader files
+*.spv
+
 # Directories
 build/
-assets/
+assets/models/
