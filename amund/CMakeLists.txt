@@ -40,4 +40,4 @@ target_link_libraries(amund
     PRIVATE glm
     ) 
 
-file(COPY "assets" DESTINATION "${CMAKE_BINARY_DIR}")
+file(COPY "assets" DESTINATION "${CMAKE_BINARY_DIR}/amund")

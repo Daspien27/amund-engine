@@ -153,6 +153,11 @@ public:
         glUseProgram(id);
     }
 
+    unsigned int get_id()
+    {
+        return id;
+    }
+
     void set_bool(const std::string& name, bool value) const
     {         
         glUniform1i(glGetUniformLocation(id, name.c_str()), (int)value); 
@@ -192,17 +197,19 @@ public:
     GraphicsShaderProgram(std::filesystem::path vertex_shader_loc, std::filesystem::path fragment_shader_loc)
     {
         //Set up shaders
+        std::cout << "Setup shaders" << std::endl;
         auto const spirv_spec = SpirvSpecification("main");
         vertex_shader = std::make_unique<Shader> (GL_VERTEX_SHADER, spirv_spec, vertex_shader_loc);
         fragment_shader = std::make_unique<Shader> (GL_FRAGMENT_SHADER, spirv_spec, fragment_shader_loc);
 
         //Attach shaders
-
+        std::cout << "Attach shaders" << std::endl;
         {
             assert(vertex_shader != nullptr && fragment_shader != nullptr);
             AttachedShader attached_vs (*vertex_shader, id); 
             AttachedShader attached_fs (*fragment_shader, id); 
 
+            std::cout << "Link Program" << std::endl;
             glLinkProgram(id);
 
             int link_status = 0;
